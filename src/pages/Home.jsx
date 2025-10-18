@@ -2,6 +2,7 @@ import React from "react";
 import DisneyList from "../components/DisneyList";
 
 
+
 export default function Home () {
     return (
         <section>

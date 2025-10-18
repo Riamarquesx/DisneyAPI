@@ -1,68 +1,156 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+/* Fonte mágica (Disney-style) */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
 
 body {
   margin: 0;
+  font-family: 'Fredoka', sans-serif;
+  background-image: url('https://pin.it/5DKw6o0ru');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #2c2c54;
+  overflow-x: hidden;
+}
+
+/* Container da página */
+section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Título principal */
+h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #00BFFF; /* azul Disney */
+  text-shadow: 2px 2px 5px rgba(0, 191, 255, 0.7);
+  animation: pulseTitle 3s infinite;
+}
+
+/* Animação do título */
+@keyframes pulseTitle {
+  0%, 100% {
+    text-shadow: 2px 2px 5px rgba(0, 191, 255, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 4px 4px 15px rgba(0, 191, 255, 1);
+    transform: scale(1.05);
+  }
+}
+
+/* Lista de personagens (ul) */
+ul {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+/* Card de cada personagem */
+li {
+  list-style: none;
+  background: #fff;
+  padding: 15px 10px;
+  border-radius: 16px;
+  text-align: center;
+  width: 160px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #00BFFF;
+  position: relative;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  animation: floatUp 1s ease forwards;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Animação de entrada dos cards */
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+li:hover {
+  transform: translateY(-12px) scale(1.05) rotate(1deg);
+  box-shadow: 0 14px 25px rgba(0, 191, 255, 0.6);
+  border-color: #00BFFF;
+  z-index: 10;
+}
+
+/* Brilho animado no hover */
+li::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 15px 5px rgba(0, 191, 255, 0.6);
+}
+
+li:hover::after {
+  opacity: 1;
+  animation: pulseGlow 2s infinite;
+}
+
+/* Efeito de brilho pulsante */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px 5px rgba(0, 191, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 25px 10px rgba(0, 191, 255, 1);
+  }
+}
+
+/* Imagens */
+li img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: #f0f0ff;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+li:hover img {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Nome do personagem */
+li p {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+}
+
+li:hover p {
+  color: #00BFFF;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 600px) {
+  li {
+    width: 45%;
+  }
+
+  h2 {
+    font-size: 2rem;
   }
 }
